@@ -4,14 +4,14 @@
     <div class="col-xl-3 col-lg-3 mb-5" *ngFor="let item of events">
   <div class="containers">
     <div class="wrapper">
-      <div class="banner-image"> </div>
+      <div class="banner-image" setBackgroundImage [imageUrl]="item.picture"> </div>
       <h1> Toyota Supra</h1>
       <p>Lorem ipsum dolor sit amet, <br/>
         consectetur adipiscing elit.</p>
      </div>
      <div class="button-wrapper">
      <button class="btn outline">DETAILS</button>
-       <button class="btn fill">View Tickets</button>
+       <button class="btn fill" (click)="getTicketList(item)">View Tickets</button>
      </div>
        </div>
        </div>
