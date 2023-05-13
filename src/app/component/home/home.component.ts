@@ -7,6 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  events: any =[
+    {name:'',
+      picture:'',
+    date:''},
+    {name:'',
+      picture:'',
+    date:''},
+    {name:'',
+      picture:'',
+    date:''},
+    {name:'',
+      picture:'',
+    date:''},
+    {name:'',
+      picture:'',
+    date:''}
+  ];
   constructor() { }
 
   ngOnInit(): void {
