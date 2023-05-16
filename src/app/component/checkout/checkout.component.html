@@ -1,30 +1,30 @@
 
 <div class="container" *ngIf="checkout">
   <div class="row">
-    <div class="col-75">
+    <div class="col-70">
       <div class="container" style="background-color: #fff;">
-        <form action="/action_page.php">
+        <form [formGroup]="creditform">
 
           <div class="row">
             <div class="col-50">
               <h3>Billing Address</h3>
               <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-              <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+              <input formControlName="name" type="text" id="fname" name="firstname" placeholder="John M. Doe">
               <label for="email"><i class="fa fa-envelope"></i> Email</label>
-              <input type="text" id="email" name="email" placeholder="john@example.com">
+              <input formControlName="email" type="text" id="email" name="email" placeholder="john@example.com">
               <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-              <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+              <input formControlName="address" type="text" id="adr" name="address" placeholder="542 W. 15th Street">
               <label for="city"><i class="fa fa-institution"></i> City</label>
-              <input type="text" id="city" name="city" placeholder="New York">
+              <input type="text" id="city" formControlName="city" name="city" placeholder="New York">
 
               <div class="row">
                 <div class="col-50">
                   <label for="state">State</label>
-                  <input type="text" id="state" name="state" placeholder="NY">
+                  <input formControlName="state" type="text" id="state" name="state" placeholder="NY">
                 </div>
                 <div class="col-50">
                   <label for="zip">Zip</label>
-                  <input type="text" id="zip" name="zip" placeholder="10001">
+                  <input formControlName="zipcode" type="text" id="zip" name="zip" placeholder="10001">
                 </div>
               </div>
             </div>
@@ -39,50 +39,52 @@
                 <i class="fa fa-cc-discover" style="color:orange;"></i>
               </div>
               <label for="cname">Name on Card</label>
-              <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+              <input type="text" formControlName="cardname" id="cname" name="cardname" placeholder="John More Doe">
               <label for="ccnum">Credit card number</label>
-              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+              <input formControlName="cardnumber" type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
               <label for="expmonth">Exp Month</label>
-              <input type="text" id="expmonth" name="expmonth" placeholder="September">
+              <input formControlName="expirationmonth" type="text" id="expmonth" name="expmonth" placeholder="September">
 
               <div class="row">
                 <div class="col-50">
                   <label for="expyear">Exp Year</label>
-                  <input type="text" id="expyear" name="expyear" placeholder="2018">
+                  <input formControlName="expirationyear" (keyup)="numbersonly($event)" type="text" id="expyear" name="expyear" placeholder="2018">
                 </div>
                 <div class="col-50">
                   <label for="cvv">CVV</label>
-                  <input type="text" id="cvv" name="cvv" placeholder="352">
+                  <input formControlName="cvv" (keyup)="numbersonly2($event)" type="text" id="cvv" name="cvv" placeholder="352">
                 </div>
               </div>
             </div>
 
           </div>
           <label>
-            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+            <input formControlName="address" type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
           </label>
-          <input type="submit" value="Continue to checkout" class="btn">
+          <input type="submit" (click)="checkoutAction()" value="Continue to checkout" class="btn">
         </form>
       </div>
     </div>
 
-    <div class="col-25">
+    <div class="col-30">
       <div class="container" style="background-color: #fff;">
         <h4>Cart
           <span class="price" style="color:black">
             <i class="fa fa-shopping-cart"></i>
             <b>1</b>
-            <!-- <i class="fa fa-chevron-up"></i> -->
           </span>
         </h4>
-        <p><a>Product 1</a> <span class="price">$15</span>
-        <span class="m-btn-group m-btn-group--pill btn-group mr-2" role="group" aria-label="...">
-          <button type="button" style="width:10%; height: 10%;" class="m-btn btn btn-default" (click)="minus(card)"><i class="fa fa-minus"></i></button>
-          <button type="button" class="m-btn btn btn-default" style="width:10%; height: 10%;" disabled>1</button>
-          <button type="button" class="m-btn btn btn-default" style="width:10%; height: 10%;" (click)="plus(card)"><i class="fa fa-plus"></i></button>
-      </span></p>
+        <ng-container *ngFor="let item of cardOrderList">
+          <p><a>{{item.name}}</a>
+            <span style="margin-left: 5%;" class="m-btn-group m-btn-group--pill btn-group mr-2" role="group" aria-label="...">
+              <button type="button" style="width:10%; height: 10%;" class="m-btn btn btn-default" (click)="minus(item)"><i class="fa fa-minus"></i></button>
+              <button type="button" class="m-btn btn btn-default" style="width:10%; height: 10%;" disabled>{{item.qty}}</button>
+              <button type="button" class="m-btn btn btn-default" style="width:10%; height: 10%;" (click)="plus(item)"><i class="fa fa-plus"></i></button>
+          </span><span class="price2">${{item.total}}</span></p>
+        </ng-container>
+
         <hr>
-        <p>Total <span class="price" style="color:black;"><b>$30</b></span></p>
+        <p>Total <span class="price" style="color:black;"><b>${{total}}</b></span></p>
       </div>
     </div>
   </div>
@@ -91,16 +93,21 @@
 <div class="container" *ngIf="placeOrder">
   <div class="row">
     <div class="col-65">
+      <div class="container mb-5" style="background-color: #fff;">
+        <h3>Delivery <i class="fa fa-check-circle" style="color:green;"></i></h3>
+        <label for="delivery">Mobile Entry - Free</label>
+        <div style="color:grey;">
+          <span>Tickets Available by sun Apr 3 2022</span>
+          <span>These mobile tickets will be transferred directly to you from a trusted seller. We'll email</span>
+          <span>you instructions on how to accept them on the original ticket provider's mobile app</span>
+        </div>
+      </div>
       <div class="container" style="background-color: #fff;">
-        <form action="/action_page.php">
+        <form>
 
           <div class="row">
-            <!-- <div class="col-50">
-
-            </div> -->
-
             <div class="col-65">
-              <h3>Payment</h3>
+              <h3>Payment <i class="fa fa-check-circle" style="color:green;"></i></h3>
               <label for="fname">Use credit/Debit Cards</label>
               <div class="icon-container">
                 <i class="fa fa-cc-visa" style="color:navy;"></i>
@@ -108,28 +115,53 @@
                 <i class="fa fa-cc-mastercard" style="color:red;"></i>
                 <i class="fa fa-cc-discover" style="color:orange;"></i>
               </div>
-              <label for="cname">Name on Card</label>
-              <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-              <label for="ccnum">Credit card number</label>
-              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-              <label for="expmonth">Exp Month</label>
-              <input type="text" id="expmonth" name="expmonth" placeholder="September">
 
-              <div class="row">
-                <div class="col-50">
-                  <label for="expyear">Exp Year</label>
-                  <input type="text" id="expyear" name="expyear" placeholder="2018">
-                </div>
-                <div class="col-50">
-                  <label for="cvv">CVV</label>
-                  <input type="text" id="cvv" name="cvv" placeholder="352">
-                </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  <div class="row">
+                    <div class="col-20"><span style="color:#1E236E; background-color:seashell; font-weight:bold;">VISA</span></div>
+                    <div class="col-75">
+                      <p>
+                        <span>Visa-9999</span>
+                      </p>
+                      <p><span style="color:grey">{{creditform.get('cardname').value}} | exp. 00/11</span></p>
+                      <p><a style="cursor:pointer;color: #1F62D4;" (click)="edit()">Edit</a> | <a (click)="delete()" style="cursor:pointer;color: #1F62D4;">Delete</a></p>
+                      <ng-container *ngIf="editCard">
+                              <form>
+                                <label for="cname">Name on Card</label>
+                                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                <label for="ccnum">Credit card number</label>
+                                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                <label for="expmonth">Exp Month</label>
+                                <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+                                <div class="row">
+                                  <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                  </div>
+                                  <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                  </div>
+                                </div>
+                                <input type="button" value="Save Card" class="btn">
+                              </form>
+                      </ng-container>
+                      <span><label for="cvv">Security Code</label><input type="password" id="cvv" name="cvv" [value]="creditform.get('cvv').value" placeholder="352"> <i style="color:grey;font-size:30px; padding-left: 20px;" class="fa fa-credit-card"></i> 3-digit on back of card</span>
+                    </div>
+                  </div>
+                </label>
               </div>
             </div>
 
           </div>
+          <div>
+            <a style="color:#5386DD;"><i style="font-size:30px;" class="fa fa-plus"></i><i style="color:grey;font-size:30px; padding-left: 20px;" class="fa fa-credit-card"></i> Add New Card</a>
+          </div>
           <p style="font-weight:bold">Or Pay With <br><span>By using a digital wallet and continuint past this page, you have
-            read and are <br> accepting the <span style="color:blue">Terms and Use.</span>
+            read and are <br> accepting the <span style="color:#5386DD">Terms and Use.</span>
           </span></p>
         </form>
       </div>
@@ -140,7 +172,7 @@
         <h4 style="color:black; font-weight: bold;">Total
           <span class="price" style="color:black">
             <!-- <i class="fa fa-shopping-cart"></i> -->
-            <b>$30</b>
+            <b>${{total}}</b>
             <i class="fa fa-chevron-up"></i>
           </span>
         </h4>
@@ -159,7 +191,7 @@
           <h4><span style="font-weight: bold;">Delivery</span></h4>
         <p><a>Mobile Entry</a> <span class="price">Free</span></p>
 
-        <p><a href="#" style="text-decoration: none;"> Cancel Order</a></p>
+        <p><a style="text-decoration: none; color:rgb(0, 140, 255);" (click)="cancelOrder()"> Cancel Order</a></p>
         <!-- <hr> -->
         <p><b>*All Sales Final - No Refunds</b></p>
         <form action="">

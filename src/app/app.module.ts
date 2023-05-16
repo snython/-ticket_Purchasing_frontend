@@ -9,6 +9,7 @@ import { HomeComponent } from './component/home/home.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
 import { TicketListComponent } from './component/ticket-list/ticket-list.component';
 import { SetBackgroundImageDirective } from './Directives/set-background-image.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { SetBackgroundImageDirective } from './Directives/set-background-image.d
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

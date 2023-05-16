@@ -11,10 +11,11 @@ export class TicketListComponent implements OnInit {
   ticket: any =[{
     id:1,
     description: '',
-    date:''
-  }, {id:2, description: '', date:''},
-  {id:3,description: '', date:''},
-  {id:4, description:'', date:''}
+    date:'',
+    price:'15'
+  }, {id:2, description: '', date:'',price:'15'},
+  {id:3,description: '', date:'',price:'15'},
+  {id:4, description:'', date:'',price:'15'}
   ];
   constructor(private router: Router) { }
 
@@ -39,5 +40,11 @@ export class TicketListComponent implements OnInit {
     console.log(data);
   }
 
-  checkout(data: any): any{}
+  checkout(data: any): any{
+    this.router.navigate(['/checkout/', data.id], {
+      state: {
+       ticketData: data
+      },
+    });
+  }
 }
