@@ -1,15 +1,10 @@
 # TicketPurchasing
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
-[View More](https://demos.creative-tim.com/material-dashboard-angular2/#/dashboard).
 
 ## Quick start
 
 Quick start options:
-
-- [Download from Github](https://github.com/tiniestory/material-dashboard-angular2/archive/master.zip).
-- [Download from Creative Tim](http://www.creative-tim.com/product/material-dashboard-angular2).
-
 ## Terminal Commands
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0 and angular 4.x.

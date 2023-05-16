@@ -61,7 +61,7 @@
           <label>
             <input formControlName="address" type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
           </label>
-          <input type="submit" (click)="checkoutAction()" value="Continue to checkout" class="btn">
+          <input type="submit" [disabled]="!creditform.valid" (click)="checkoutAction()" value="Continue to checkout" class="btn">
         </form>
       </div>
     </div>
@@ -94,7 +94,7 @@
   <div class="row">
     <div class="col-65">
       <div class="container mb-5" style="background-color: #fff;">
-        <h3>Delivery <i class="fa fa-check-circle" style="color:green;"></i></h3>
+        <h3>Delivery <i class="fa fa-check-circle green-color" style="color:green;"></i></h3>
         <label for="delivery">Mobile Entry - Free</label>
         <div style="color:grey;">
           <span>Tickets Available by sun Apr 3 2022</span>
