@@ -16,6 +16,7 @@ export class CheckoutComponent implements OnInit {
   total: any=15;
   creditform: any;
   editCard: boolean;
+  creditUpdateForm: any;
   constructor(private fb: FormBuilder) {
     this.checkout= true;
     this.placeOrder = false;
@@ -36,6 +37,14 @@ export class CheckoutComponent implements OnInit {
       address:['',[Validators.required]],
       state:['',[Validators.required]]
     });
+
+    this.creditUpdateForm = this.fb.group({
+      cardname: ['', [Validators.required]],
+      cardnumber: ['', [Validators.required]],
+      cvv: ['', [Validators.required, Validators.maxLength(3)]],
+      expirationyear: ['', [Validators.required]],
+      expirationmonth: ['', [Validators.required]],
+    });
   }
 
   checkoutAction(): any {
@@ -44,8 +53,17 @@ export class CheckoutComponent implements OnInit {
     this.placeOrder =true;
   }
 
+  updateCard(): any{
+    console.log(this.creditUpdateForm.value)
+  }
+
   edit(): any{
     this.editCard = true;
+    this.creditUpdateForm.get('cardname').setValue(this.creditform.get('cardname').value);
+    this.creditUpdateForm.get('cardnumber').setValue(this.creditform.get('cardnumber').value);
+    this.creditUpdateForm.get('cvv').setValue(this.creditform.get('cvv').value);
+    this.creditUpdateForm.get('expirationyear').setValue(this.creditform.get('expirationyear').value);
+    this.creditUpdateForm.get('expirationmonth').setValue(this.creditform.get('expirationmonth').value);
   }
 
   delete(): any{}
@@ -53,6 +71,8 @@ export class CheckoutComponent implements OnInit {
   cancelOrder(): any {
     this.checkout = true;
     this.placeOrder =false;
+    this.creditform.reset();
+    this.creditUpdateForm.reset();
   }
 
   minus(data: any): any{

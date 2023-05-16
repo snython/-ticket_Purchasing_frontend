@@ -128,25 +128,25 @@
                       <p><span style="color:grey">{{creditform.get('cardname').value}} | exp. 00/11</span></p>
                       <p><a style="cursor:pointer;color: #1F62D4;" (click)="edit()">Edit</a> | <a (click)="delete()" style="cursor:pointer;color: #1F62D4;">Delete</a></p>
                       <ng-container *ngIf="editCard">
-                              <form>
+                              <form [formGroup]="creditform">
                                 <label for="cname">Name on Card</label>
-                                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                <input formControlName="cardname" type="text" id="cname" name="cardname" placeholder="John More Doe">
                                 <label for="ccnum">Credit card number</label>
-                                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                                <input formControlName="cardnumber" type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
                                 <label for="expmonth">Exp Month</label>
-                                <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                                <input type="text" formControlName="expirationmonth" id="expmonth" name="expmonth" placeholder="September">
 
                                 <div class="row">
                                   <div class="col-50">
                                     <label for="expyear">Exp Year</label>
-                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                    <input formControlName="expirationyear" type="text" id="expyear" name="expyear" placeholder="2018">
                                   </div>
                                   <div class="col-50">
                                     <label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                    <input formControlName="cvv" type="text" id="cvv" name="cvv" placeholder="***">
                                   </div>
                                 </div>
-                                <input type="button" value="Save Card" class="btn">
+                                <input type="button" (click)="updateCard()" value="Save Card" class="btn">
                               </form>
                       </ng-container>
                       <span><label for="cvv">Security Code</label><input type="password" id="cvv" name="cvv" [value]="creditform.get('cvv').value" placeholder="352"> <i style="color:grey;font-size:30px; padding-left: 20px;" class="fa fa-credit-card"></i> 3-digit on back of card</span>
