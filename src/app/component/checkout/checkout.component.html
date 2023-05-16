@@ -1,111 +1,175 @@
-<div class='container'>
-  <div class='window'>
-    <div class='order-info'>
-      <div class='order-info-content'>
-        <h2>Order Summary</h2>
-                <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <td><img src='https://dl.dropboxusercontent.com/s/sim84r2xfedj99n/%24_32.JPG' class='full-width'>
-              </td>
-              <td>
-                <br> <span class='thin'>Nike</span>
-                <br> Free Run 3.0 Women<br> <span class='thin small'> Color: Grey/Orange, Size: 10.5<br><br></span>
-              </td>
 
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>$99.95</div>
-              </td>
-            </tr>
-          </tbody>
+<div class="container" *ngIf="checkout">
+  <div class="row">
+    <div class="col-75">
+      <div class="container" style="background-color: #fff;">
+        <form action="/action_page.php">
 
-        </table>
-        <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <td><img src='https://dl.dropboxusercontent.com/s/qbj9tsbvthqq72c/Vintage-20L-Backpack-by-Fj%C3%A4llr%C3%A4ven.jpg' class='full-width'>
-              </td>
-              <td>
-                <br> <span class='thin'>Fjällräven</span>
-                <br>Vintage Backpack<br> <span class='thin small'> Color: Olive, Size: 20L</span>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>$235.95</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class='line'></div>
-        <table class='order-table'>
-          <tbody>
-            <tr>
-              <td><img src='https://dl.dropboxusercontent.com/s/nbr4koso8dpoggs/6136C1p5FjL._SL1500_.jpg' class='full-width'>
-              </td>
-              <td>
-                <br> <span class='thin'>Monobento</span>
-                <br>Double Lunchbox<br> <span class='thin small'> Color: Pink, Size: Medium</span>
-              </td>
+          <div class="row">
+            <div class="col-50">
+              <h3>Billing Address</h3>
+              <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+              <label for="email"><i class="fa fa-envelope"></i> Email</label>
+              <input type="text" id="email" name="email" placeholder="john@example.com">
+              <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+              <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+              <label for="city"><i class="fa fa-institution"></i> City</label>
+              <input type="text" id="city" name="city" placeholder="New York">
 
-            </tr>
-            <tr>
-              <td>
-                <div class='price'>$25.95</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class='line'></div>
-        <div class='total'>
-          <span style='float:left;'>
-            <div class='thin dense'>VAT 19%</div>
-            <div class='thin dense'>Delivery</div>
-            TOTAL
-          </span>
-          <span style='float:right; text-align:right;'>
-            <div class='thin dense'>$68.75</div>
-            <div class='thin dense'>$4.95</div>
-            $435.55
-          </span>
-        </div>
-</div>
-</div>
-        <div class='credit-info'>
-          <div class='credit-info-content'>
-            <table class='half-input-table'>
-              <tr><td>Please select your card: </td><td><div class='dropdown' id='card-dropdown'><div class='dropdown-btn' id='current-card'>Visa</div>
-                <div class='dropdown-select'>
-                <ul>
-                  <li>Master Card</li>
-                  <li>American Express</li>
-                  </ul></div>
+              <div class="row">
+                <div class="col-50">
+                  <label for="state">State</label>
+                  <input type="text" id="state" name="state" placeholder="NY">
                 </div>
-               </td></tr>
-            </table>
-            <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'>
-            Card Number
-            <input class='input-field'>
-            Card Holder
-            <input class='input-field'>
-            <table class='half-input-table'>
-              <tr>
-                <td> Expires
-                  <input class='input-field'>
-                </td>
-                <td>CVC
-                  <input class='input-field'>
-                </td>
-              </tr>
-            </table>
-            <button class='pay-btn'>Checkout</button>
+                <div class="col-50">
+                  <label for="zip">Zip</label>
+                  <input type="text" id="zip" name="zip" placeholder="10001">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-50">
+              <h3>Payment</h3>
+              <label for="fname">Accepted Cards</label>
+              <div class="icon-container">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-discover" style="color:orange;"></i>
+              </div>
+              <label for="cname">Name on Card</label>
+              <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+              <label for="ccnum">Credit card number</label>
+              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+              <label for="expmonth">Exp Month</label>
+              <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+              <div class="row">
+                <div class="col-50">
+                  <label for="expyear">Exp Year</label>
+                  <input type="text" id="expyear" name="expyear" placeholder="2018">
+                </div>
+                <div class="col-50">
+                  <label for="cvv">CVV</label>
+                  <input type="text" id="cvv" name="cvv" placeholder="352">
+                </div>
+              </div>
+            </div>
 
           </div>
-
-        </div>
+          <label>
+            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+          </label>
+          <input type="submit" value="Continue to checkout" class="btn">
+        </form>
       </div>
+    </div>
+
+    <div class="col-25">
+      <div class="container" style="background-color: #fff;">
+        <h4>Cart
+          <span class="price" style="color:black">
+            <i class="fa fa-shopping-cart"></i>
+            <b>1</b>
+            <!-- <i class="fa fa-chevron-up"></i> -->
+          </span>
+        </h4>
+        <p><a>Product 1</a> <span class="price">$15</span>
+        <span class="m-btn-group m-btn-group--pill btn-group mr-2" role="group" aria-label="...">
+          <button type="button" style="width:10%; height: 10%;" class="m-btn btn btn-default" (click)="minus(card)"><i class="fa fa-minus"></i></button>
+          <button type="button" class="m-btn btn btn-default" style="width:10%; height: 10%;" disabled>1</button>
+          <button type="button" class="m-btn btn btn-default" style="width:10%; height: 10%;" (click)="plus(card)"><i class="fa fa-plus"></i></button>
+      </span></p>
+        <hr>
+        <p>Total <span class="price" style="color:black;"><b>$30</b></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="placeOrder">
+  <div class="row">
+    <div class="col-65">
+      <div class="container" style="background-color: #fff;">
+        <form action="/action_page.php">
+
+          <div class="row">
+            <!-- <div class="col-50">
+
+            </div> -->
+
+            <div class="col-65">
+              <h3>Payment</h3>
+              <label for="fname">Use credit/Debit Cards</label>
+              <div class="icon-container">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-discover" style="color:orange;"></i>
+              </div>
+              <label for="cname">Name on Card</label>
+              <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+              <label for="ccnum">Credit card number</label>
+              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+              <label for="expmonth">Exp Month</label>
+              <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+              <div class="row">
+                <div class="col-50">
+                  <label for="expyear">Exp Year</label>
+                  <input type="text" id="expyear" name="expyear" placeholder="2018">
+                </div>
+                <div class="col-50">
+                  <label for="cvv">CVV</label>
+                  <input type="text" id="cvv" name="cvv" placeholder="352">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <p style="font-weight:bold">Or Pay With <br><span>By using a digital wallet and continuint past this page, you have
+            read and are <br> accepting the <span style="color:blue">Terms and Use.</span>
+          </span></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-35">
+      <div class="container" style="background-color: #fff;">
+        <h4 style="color:black; font-weight: bold;">Total
+          <span class="price" style="color:black">
+            <!-- <i class="fa fa-shopping-cart"></i> -->
+            <b>$30</b>
+            <i class="fa fa-chevron-up"></i>
+          </span>
+        </h4>
+        <br>
+        <h4><span style="font-weight: bold;">Tickets</span></h4>
+        <p>Resale ticket <span class="price">$15</span></p>
+        <h4><span style="font-weight: bold;">Notes from seller</span></h4>
+        <p>xfr XFER Proof of at least one dose of COVID-19 vaccination for ages 5 to 11 and guests ages 12 and up will be available
+          required to show proof of two COVID-19 vaccine doses or one dose of the Johnson & Johnson vaccine.
+          Masks must be worn.
+        </p>
+        <h4><span style="font-weight: bold;">Fees</span></h4>
+        <p><a>Service Fee: $44.08 * 2</a> <span class="price">$15</span><br>
+          <span><a>Order Processing Fee</a> <span class="price">$2.95</span></span></p>
+
+          <h4><span style="font-weight: bold;">Delivery</span></h4>
+        <p><a>Mobile Entry</a> <span class="price">Free</span></p>
+
+        <p><a href="#" style="text-decoration: none;"> Cancel Order</a></p>
+        <!-- <hr> -->
+        <p><b>*All Sales Final - No Refunds</b></p>
+        <form action="">
+          <label>
+            <input type="checkbox" name="agreement"> I have read and agreed to the current <span style="color:rgb(0, 140, 255)">Terms of use</span>
+          </label>
+          <input type="submit" value="Place Order" class="btn">
+          <p>*Exceptions may apply, see our Terms of Use.</p>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  card: any;
+  checkout: boolean;
+  placeOrder: boolean;
+  constructor() {
+    this.checkout= true;
+    this.placeOrder = false;
+   }
 
   ngOnInit(): void {
   }
+  plus(data: any): any{
+    console.log(data);
+  }
 
+  minus(data: any): any{
+    console.log(data);
+  }
 }

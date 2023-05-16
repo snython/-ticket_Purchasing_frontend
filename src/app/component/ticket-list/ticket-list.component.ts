@@ -8,6 +8,14 @@ import { Router } from '@angular/router';
 })
 export class TicketListComponent implements OnInit {
 
+  ticket: any =[{
+    id:1,
+    description: '',
+    date:''
+  }, {id:2, description: '', date:''},
+  {id:3,description: '', date:''},
+  {id:4, description:'', date:''}
+  ];
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -22,4 +30,14 @@ export class TicketListComponent implements OnInit {
     //   },
     // });
   }
+
+  plus(data: any): any{
+    console.log(data);
+  }
+
+  minus(data: any): any{
+    console.log(data);
+  }
+
+  checkout(data: any): any{}
 }
