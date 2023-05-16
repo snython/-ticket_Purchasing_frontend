@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 * {
-    margin: 0;
-    padding: 0;
+    margin: 5;
+    padding: 5;
     border: 0;
     box-sizing: border-box
 }
 
-body {
-    background-color: #dadde6;
-    font-family: arial
-}
+// body {
+//     background-color: #dadde6;
+//     font-family: arial
+// }
 
 .fl-left {
     float: left
@@ -40,7 +40,8 @@ h1 {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
     border-radius: 4px;
-    position: relative
+    position: relative;
+    width: 100% !important;
 }
 
 .card+.card {
@@ -117,7 +118,7 @@ h1 {
 }
 
 .card-cont>div {
-    display: table-row
+    display: table-row;
 }
 
 .card-cont .even-date i,
