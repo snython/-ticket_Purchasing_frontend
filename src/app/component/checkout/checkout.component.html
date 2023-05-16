@@ -125,7 +125,7 @@
                       <p>
                         <span>Visa-9999</span>
                       </p>
-                      <p><span style="color:grey">{{creditform.get('cardname').value}} | exp. 00/11</span></p>
+                      <p><span style="color:grey">{{creditform.get('cardname').value}} | exp. {{creditform.get('expirationmonth').value}}/{{creditform.get('expirationyear').value}}</span></p>
                       <p><a style="cursor:pointer;color: #1F62D4;" (click)="edit()">Edit</a> | <a (click)="delete()" style="cursor:pointer;color: #1F62D4;">Delete</a></p>
                       <ng-container *ngIf="editCard">
                               <form [formGroup]="creditform">
@@ -160,6 +160,7 @@
           <div>
             <a style="color:#5386DD;"><i style="font-size:30px;" class="fa fa-plus"></i><i style="color:grey;font-size:30px; padding-left: 20px;" class="fa fa-credit-card"></i> Add New Card</a>
           </div>
+          <hr>
           <p style="font-weight:bold">Or Pay With <br><span>By using a digital wallet and continuint past this page, you have
             read and are <br> accepting the <span style="color:#5386DD">Terms and Use.</span>
           </span></p>
